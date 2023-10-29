@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const admin = require("firebase-admin");
+const admin = require("firebase-admin"); //we will use firebase auth
 const serviceAccount = require("./serviceKey.json"); //this is gitIgnore bc very top secret
 
 app.use(express.json());
