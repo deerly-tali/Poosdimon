@@ -51,12 +51,13 @@ app.post('/login', async (req,res) =>{ //POST request
             email: req.body.email,
             password: req.body.password
         }
+        //TODO: hash user password here
 
        const userLoginResponse = await admin.auth().getUserByEmail(user.email)
        .then((userRecord) =>{
             console.log(`user: ${userRecord.uid}`);
 
-            if(userRecord.passwordHash == user.password){
+            if(userRecord.passwordHash == user.password){ //TODO: passwordHash is returned null by firebase auth
                 console.log(`password : ${userRecord.passwordHash}`);
                 res.json(userRecord);
 
