@@ -42,7 +42,6 @@ app.post('/signup', async (req, res) => { //make POST request with new user info
 
 
 //login a user
-
 app.post('/login', async (req,res) =>{ //POST request
     console.log(req.body); //to debug
 
@@ -62,7 +61,7 @@ app.post('/login', async (req,res) =>{ //POST request
                 res.json(userRecord);
 
             }else{
-                console.log("conflict");
+                console.log("password doesn't match");
                 res.status(409).send("conflict in finding user");
             }
        }
