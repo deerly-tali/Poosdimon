@@ -1,4 +1,4 @@
-/*const mapData = {
+const mapData = {
     minX: 1,
     maxX: 14,
     minY: 4,
@@ -337,4 +337,3 @@
   
   
   })();
-  */
