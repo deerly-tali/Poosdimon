@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express"); //espress for backend
 const app = express();
 const PORT = process.env.PORT || 8080; //local port to test on, can change port if needed
@@ -9,10 +10,17 @@ const serviceAccount = require("./serviceKey.json"); //this is vital for firebas
 
 app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount) //setting up for firebase admin auth
+});
+
+
+app.get('/', function(req,res){
+    //res.send("hello worlds");
+    res.sendFile(path.join(__dirname,"/public", "index.html"));
 });
 
 
@@ -62,10 +70,21 @@ app.post('/login', async (req,res) =>{ //POST request
 
             }else{
                 console.log("password doesn't match");
-                res.status(409).send("conflict in finding user");
+                res.status(409).send(`password hash ${userRecord.passwordHash}`);
             }
        }
        );
+
+       /*
+       const listAllUsers = (nextPageToken) => {
+            admin.auth().listUsers(100,nextPageToken)
+            .then((listUsersResult)=> {
+                const foundUser = listUsersResult.users.find(user.email);
+                console.log(`found user: ${foundUser.json()}`);
+
+            });
+       }*/
+
 
     }catch(error){
         console.log(error.message);
@@ -77,7 +96,7 @@ app.post('/login', async (req,res) =>{ //POST request
 //logging out a user
 app.post('/logout', async (req,res) => {
     try{
-        console.log(req.body);
+        console.log("not implemented yet");
         
     }catch(error){
         console.log(error);
