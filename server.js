@@ -1,6 +1,6 @@
 const express = require("express"); //espress for backend
-const cors = require("cors");
-
+//const cors = require("cors");
+const axios = require('axios')
 
 const app = express();
 const PORT = process.env.PORT || 8080; //local port to test on, can change port if needed
@@ -8,7 +8,7 @@ const admin = require('firebase-admin'); //we will use firebase auth
 const serviceAccount = require("./serviceKey.json"); //this is vital for firebase auth && PLS gitignore this
 
 
-app.use(cors);
+//app.use(cors);
 app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
 
