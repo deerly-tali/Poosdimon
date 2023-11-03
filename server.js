@@ -1,16 +1,17 @@
-const path = require("path");
 const express = require("express"); //espress for backend
+const cors = require("cors");
+
+
 const app = express();
 const PORT = process.env.PORT || 8080; //local port to test on, can change port if needed
-
-
 const admin = require('firebase-admin'); //we will use firebase auth
 const serviceAccount = require("./serviceKey.json"); //this is vital for firebase auth && PLS gitignore this
 
 
+app.use(cors);
 app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 admin.initializeApp({
@@ -18,10 +19,25 @@ admin.initializeApp({
 });
 
 
-app.get('/', function(req,res){
-    //res.send("hello worlds");
-    res.sendFile(path.join(__dirname,"/public", "index.html"));
+app.get('/hello', function(req,res){
+    res.send("hello worlds");
 });
+
+
+//get a pokemon from poke api
+app.get('/pokemon/:name', async (req,res) =>{
+    try{
+        const {name} = req.params;
+        const response = axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const pokemon = response.data;
+
+        res.json({pokemon});
+
+    }catch(error){
+        res.status(404).send(error.message);
+    }
+});
+
 
 
 //signup a user
@@ -74,16 +90,6 @@ app.post('/login', async (req,res) =>{ //POST request
             }
        }
        );
-
-       /*
-       const listAllUsers = (nextPageToken) => {
-            admin.auth().listUsers(100,nextPageToken)
-            .then((listUsersResult)=> {
-                const foundUser = listUsersResult.users.find(user.email);
-                console.log(`found user: ${foundUser.json()}`);
-
-            });
-       }*/
 
 
     }catch(error){
