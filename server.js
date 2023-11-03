@@ -25,13 +25,13 @@ app.get('/hello', function(req,res){
 
 
 //get a pokemon from poke api
-app.get('/pokemon/:name', async (req,res) =>{
+app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request cant grab from axios request
     try{
         const {name} = req.params;
         const response = axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
         const pokemon = response.data;
 
-        res.json({pokemon}); //TODO: this is currently not returning expected json
+        res.json({pokemon});
 
     }catch(error){
         res.status(404).send(error.message);
