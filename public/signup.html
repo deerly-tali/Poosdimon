@@ -51,17 +51,30 @@
 
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.getDatabase(app);
+    const auth = getAuth();
 
-    //signup elements
-    const newUserEmail = document.getElementById("email");
-    const newUserPassword = document.getElementById("password");
     const signupButton = document.getElementById("signup");
-
     //signup validation w/ regex cause its easier this way
     //TODO: can do it here if you want
   
 
     //registratio w/firebase
+    signupButton.addEventListener('click', (e) =>{
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
+    });
 </script>
 
 </body>
