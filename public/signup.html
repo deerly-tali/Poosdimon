@@ -1,10 +1,25 @@
-<!--
-Note: This was created just to test out the login.php code and will have to be fixed
-TODO: fancy frontend stuff :) <3
--->
-
 <!DOCTYPE html>
 <html>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+      // NOTE - INCLUDE YOUR FIREBASE CONFIG HERE FOR ANYTHING TO WORK:
+      const firebaseConfig = {
+        apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
+        authDomain: "fir-demotest-105b0.firebaseapp.com",
+        databaseURL: "https://fir-demotest-105b0-default-rtdb.firebaseio.com",
+        projectId: "fir-demotest-105b0",
+        storageBucket: "fir-demotest-105b0.appspot.com",
+        messagingSenderId: "505860360257",
+        appId: "1:505860360257:web:91b4277854be27e8501ec0",
+        measurementId: "G-8GC3VQ6N0S"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+
 <head>
     <title>Signup or Login</title>
     <script type="text/javascript" src="js/script.js"></script>
