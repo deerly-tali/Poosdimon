@@ -35,7 +35,7 @@
 <script type="module">
     import {initializeApp} from "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
     import {getDatabase} from "https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js";
+    import  {getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
@@ -54,6 +54,7 @@
     const auth = getAuth();
 
     const signupButton = document.getElementById("signup");
+    const loginButton = document.getElementById("login");
     //signup validation w/ regex cause its easier this way
     //TODO: can do it here if you want
   
@@ -63,7 +64,7 @@
         let email = document.getElementById("email");
         let password = document.getElementById("password");
 
-        createUserWithEmailAndPassword(auth, email.value, password)
+        createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
@@ -71,9 +72,24 @@
         })
         .catch((error) => {
             alert(error.message);
-            console.log(error.message);
             console.log(error);
         });
+    });
+
+
+    loginButton.addEventListener('click', (e) => {
+        let email = document.getElementById("loginEmail");
+        let password = document.getElementById("loginPassword");
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log(userCredential);
+        })
+        .catch((error) => {
+            alert(error.message);
+            console.log(error);
+        });
+        
     });
 </script>
 
