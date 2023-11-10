@@ -60,19 +60,19 @@
 
     //registration w/firebase
     signupButton.addEventListener('click', (e) =>{
-        const email = document.getElementById("email");
-        const password = document.getElementById("password");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
 
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email.value, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
             console.log("User Created");
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage);
+            alert(error.message);
+            console.log(error.message);
+            console.log(error);
         });
     });
 </script>
