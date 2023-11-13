@@ -11,7 +11,7 @@ const serviceAccount = require("./serviceKey.json"); //this is vital for firebas
 //app.use(cors);
 //app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
-
+app.use(express.static('public'));
 
 
 admin.initializeApp({

@@ -1,30 +1,25 @@
-
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Multiplayer Demo</title>
+    <title>PoosdMon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css" type="text/css">
+    <link rel="stylesheet" href="/public/landing.css" type="text/css">
+    <link rel="icon" type="img/ico" href="favicon.ico">
   </head>
-  <body>
 
-    <div class="game-container">
+  <img class="bg" src="images/Route.png" alt="background">
+
+  <body>
+    <div class="title">
+      <img src="images/Title.png" alt="Title image">
     </div>
-    <div class="player-info">
-      <div>
-        <label for="player-name">Your Name</label>
-        <input id="player-name" maxlength="10" type="text" />
-      </div>
-      <div>
-        <button id="player-color">Change Color</button>
-      </div>
+    <div class="">
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script>
-      // NOTE - INCLUDE YOUR FIREBASE CONFIG HERE FOR ANYTHING TO WORK:
       const firebaseConfig = {
         apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
         authDomain: "fir-demotest-105b0.firebaseapp.com",
@@ -38,8 +33,5 @@
       firebase.initializeApp(firebaseConfig);
     </script>
 
-
-    <script src="/KeyPressListener.js"></script>
-    <script src="/app.js"></script>
   </body>
 </html>
