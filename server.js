@@ -1,5 +1,4 @@
 const express = require("express"); //espress for backend
-const cors = require("cors");
 const axios = require('axios');
 
 const app = express();
@@ -44,10 +43,6 @@ app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api
     }
 });
 
-//TODO: get pokemon from showdown
-
-
-
 //signup a user
 app.post('/signup', async (req, res) => { //make POST request with new user info
     console.log(req.body); //to debug
@@ -82,11 +77,9 @@ app.post('/login', async (req,res) =>{ //POST request
             email: req.body.email,
             password: req.body.password
         }
-        //TODO: hash user password here
 
        const userLoginResponse = await admin.auth().getUserByEmail(user.email)
        .then((userRecord) =>{
-            console.log(`user: ${userRecord.uid}`);
 
             if(userRecord.passwordHash == user.password){ //TODO: passwordHash is returned null by firebase auth
                 console.log(`password : ${userRecord.passwordHash}`);
