@@ -1,24 +1,89 @@
 @font-face {
     font-family: "bodyText";
-    src: url(/public/fonts/pokemon-dp-pro.ttf);
+    src: url(fonts/pokemon-dp-pro.ttf);
 }
 
 body {
     font-family: "bodyText";
-    min-height: screen;
-    height: screen;
+    background-image: url(images/Route.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
     width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    padding-bottom: 80px;
 }
 
-.bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    min-width: 100%;
-    min-height: 100%;
+.title {
+    margin-top: -5px;
+    display: block;
+    width: 90vw;
+    height: 30vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* .title {
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: gainsboro;
+    background-size: contain;
+    width: 55vw;
+    min-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    border-style: solid;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: fit-content;
+}
 
-} */
+.box h1 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 6vw;
+}
+
+.input-box {
+    display: flex;
+    width: fit-content;
+    height: 7vw;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: darkgray;
+    border-style: solid;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-box input {
+    height: 5vw;
+    max-height: 120px;
+    width: 55vw;
+    max-width: fit-content; 
+    min-width: 50vw;
+    font-size: 3vw;
+    border: solid;
+}
+
+.pokeball {
+    height: 6vh;
+}
+
+.lgn {
+    width: 100%;
+    height: 5vh;
+    border: solid;
+    font-size: 20px;
+}
+
+.reg {
+    margin-top: 0px;
+    margin-bottom: -40px;
+    font-size: 4vw;
+}
