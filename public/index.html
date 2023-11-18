@@ -1,30 +1,41 @@
-
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Multiplayer Demo</title>
+    <title>PoosdMon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css" type="text/css">
+    <base href="/">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="icon" type="img/ico" href="favicon.ico">
   </head>
+
   <body>
 
-    <div class="game-container">
-    </div>
-    <div class="player-info">
-      <div>
-        <label for="player-name">Your Name</label>
-        <input id="player-name" maxlength="10" type="text" />
-      </div>
-      <div>
-        <button id="player-color">Change Color</button>
-      </div>
+    <img class="title" src="images/Title.png">
+    <div class="box">
+      <form action="">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Username" required>
+          <img class="pokeball" src="images/pokeBall.png">
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" required>
+          <img class="pokeball" src="images/pokeBall.png">
+        </div>
+
+        <div class="lgn">
+          <button type="submit" class="lgn">Login</button>
+        </div>
+        <div class="reg">
+          <p class="reg">Don't have an account? <a href="register.html" onclick="">Register</a></p>
+        </div>
+      </form>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script>
-      // NOTE - INCLUDE YOUR FIREBASE CONFIG HERE FOR ANYTHING TO WORK:
       const firebaseConfig = {
         apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
         authDomain: "fir-demotest-105b0.firebaseapp.com",
@@ -38,8 +49,5 @@
       firebase.initializeApp(firebaseConfig);
     </script>
 
-
-    <script src="/KeyPressListener.js"></script>
-    <script src="/app.js"></script>
   </body>
 </html>
