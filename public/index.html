@@ -15,16 +15,16 @@
       <form action="">
         <h1>Login</h1>
         <div class="input-box">
-          <input type="text" placeholder="Username" required>
+          <input type="text" id="email" placeholder="Username" required>
           <img class="pokeball" src="images/pokeBall.png">
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Password" required>
+          <input type="password" id="password" placeholder="Password" required>
           <img class="pokeball" src="images/pokeBall.png">
         </div>
 
         <div class="lgn">
-          <button type="submit" class="lgn">Login</button>
+          <button type="submit" id="loginButton" class="lgn" onclick="login()">Login</button>
         </div>
         <div class="reg">
           <p class="reg">Don't have an account? <a href="register.html" onclick="">Register</a></p>
@@ -35,19 +35,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
-        authDomain: "fir-demotest-105b0.firebaseapp.com",
-        databaseURL: "https://fir-demotest-105b0-default-rtdb.firebaseio.com",
-        projectId: "fir-demotest-105b0",
-        storageBucket: "fir-demotest-105b0.appspot.com",
-        messagingSenderId: "505860360257",
-        appId: "1:505860360257:web:91b4277854be27e8501ec0",
-        measurementId: "G-8GC3VQ6N0S"
-      };
-      firebase.initializeApp(firebaseConfig);
-    </script>
+    <script src="index.js"></script>
 
   </body>
 </html>
