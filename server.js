@@ -9,7 +9,7 @@ const serviceAccount = require("./serviceKey.json"); //this is vital for firebas
 
 app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
-app.use(express.static('public')); //our app will be located in public folder
+app.use(express.static('public'));
 
 
 admin.initializeApp({
