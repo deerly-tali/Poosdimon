@@ -44,6 +44,7 @@ const userSignIn = async () => {
         const errCode = error.code;
         const errMessage = error.message;
         console.log(errCode + errMessage);
+        alert(errMessage);
     });
 }
 
