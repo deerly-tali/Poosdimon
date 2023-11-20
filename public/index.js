@@ -26,15 +26,17 @@ const app = initializeApp(firebaseConfig);//setting up our app
 const analytics = getAnalytics(app);
 const auth = getAuth(app);//connecting our auth to our app
 
-var email = document.getElementById('email');
-var password = document.getElementById('password');
-var loginButton = document.getElementById('loginButton');
+//elements needed for user signin
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const loginButton = document.getElementById('loginButton');
 
+//signing in the user
 const userSignIn = async () => {
     const signInEmail = email.value;
     const signInPassword = password.value;
 
-    signInWithEmailAndPassword(auth, signInEmail,signInPassword)
+    signInWithEmailAndPassword(auth, signInEmail,signInPassword) //using Firebase Auth function
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
@@ -48,4 +50,8 @@ const userSignIn = async () => {
     });
 }
 
-loginButton.addEventListener('click', userSignIn);
+const checkAuthState = async () => {
+
+}
+
+loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
