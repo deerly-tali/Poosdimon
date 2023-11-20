@@ -39,6 +39,11 @@ const userSignIn = async () => {
         const user = userCredential.user;
         console.log(user);
         alert("Welcome Back!");
+    })
+    .catch ((error) => {
+        const errCode = error.code;
+        const errMessage = error.message;
+        console.log(errCode + errMessage);
     });
 
 }
