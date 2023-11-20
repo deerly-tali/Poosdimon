@@ -51,7 +51,16 @@ const userSignIn = async () => {
 }
 
 const checkAuthState = async () => {
+    onAuthStateChanged(auth, user => {
+        if(user){ //if true then user exists && is signed in && are authenticated
+            alert("You're signed in!");
+            //TODO: redirect to game
 
+        }else{
+            alert("You're not signed in!");
+            //TODO: add some logic here
+        }
+    });
 }
 
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
