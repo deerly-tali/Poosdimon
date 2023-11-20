@@ -45,5 +45,6 @@ const userSignIn = async () => {
         const errMessage = error.message;
         console.log(errCode + errMessage);
     });
-
 }
+
+loginButton.addEventListener('click', userSignIn);
