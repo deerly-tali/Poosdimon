@@ -63,4 +63,5 @@ const checkAuthState = async () => {
     });
 }
 
+checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
