@@ -1,5 +1,4 @@
 const express = require("express"); //espress for backend
-//const cors = require("cors");
 const axios = require('axios');
 
 const app = express();
@@ -8,8 +7,7 @@ const admin = require('firebase-admin'); //we will use firebase auth
 const serviceAccount = require("./serviceKey.json"); //this is vital for firebase auth && PLS gitignore this
 
 
-//app.use(cors);
-//app.use(express.json()); //we will be handling json objs
+app.use(express.json()); //we will be handling json objs
 app.use(express.urlencoded({extended: true})); //we will parse to our url
 app.use(express.static('public'));
 
@@ -43,11 +41,6 @@ app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api
         res.status(404).send(error.message);
     }
 });
-
-
-//TODO: get pokemon from showdown
-
-
 
 //signup a user
 app.post('/signup', async (req, res) => { //make POST request with new user info
@@ -83,11 +76,9 @@ app.post('/login', async (req,res) =>{ //POST request
             email: req.body.email,
             password: req.body.password
         }
-        //TODO: hash user password here
 
        const userLoginResponse = await admin.auth().getUserByEmail(user.email)
        .then((userRecord) =>{
-            console.log(`user: ${userRecord.uid}`);
 
             if(userRecord.passwordHash == user.password){ //TODO: passwordHash is returned null by firebase auth
                 console.log(`password : ${userRecord.passwordHash}`);
