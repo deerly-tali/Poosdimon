@@ -29,3 +29,16 @@ const auth = getAuth(app);//connecting our auth to our app
 var email = document.getElementById('email');
 var password = document.getElementById('password');
 var loginButton = document.getElementById('loginButton');
+
+const userSignIn = async () => {
+    const signInEmail = email.value;
+    const signInPassword = password.value;
+
+    signInWithEmailAndPassword(auth, signInEmail,signInPassword)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        alert("Welcome Back!");
+    });
+
+}
