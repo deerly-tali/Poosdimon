@@ -22,13 +22,13 @@ const firebaseConfig = {
 
 // Initialize Firebase 
 const app = initializeApp(firebaseConfig);//setting up our app
-const analytics = getAnalytics(app);
 const auth = getAuth(app);//connecting our auth to our app
 
 //elements needed for user signin
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
+const signOutButton = document.getElementById('signOutButton');
 
 //signing in the user
 const userSignIn = async () => {
@@ -64,7 +64,9 @@ const checkAuthState = async () => {
 
 const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
+    window.location.href("game.html");
 }
 
 checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
+signOutButton.addEventListener('click', userSignOut);

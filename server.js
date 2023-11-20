@@ -44,7 +44,6 @@ app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api
 
 //signup a user
 app.post('/signup', async (req, res) => { //make POST request with new user info
-    console.log(req.body); //to debug
 
     try{
         const newUser = {
