@@ -1,11 +1,12 @@
-// Import the functions we will use
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth,
+alert("JS working");
+const { intializeApp } = require("firebase/app");
+const { getAuth,
         signInWithEmailAndPassword,
         onAuthStateChanged,
         signOut
-} from "firebase/auth";
+    } = require("firebase/auth");
+/*
+// Import the functions we will use
 
 // our Firebase setup
 const firebaseConfig = {
@@ -54,6 +55,7 @@ const checkAuthState = async () => {
         if(user){ //if true then user exists && is signed in && are authenticated
             alert("You're signed in!");
             //TODO: redirect to game
+            //window.location.href("game.html");
 
         }else{
             alert("You're not signed in!");
@@ -64,9 +66,9 @@ const checkAuthState = async () => {
 
 const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
-    window.location.href("game.html");
 }
 
 checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
 signOutButton.addEventListener('click', userSignOut);
+*/

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
   <head>
     <title>PoosdMon</title>
@@ -24,18 +24,16 @@
         </div>
 
         <div class="lgn">
-          <button type="submit" id="loginButton" class="lgn" onclick="login()">Login</button>
+          <button id="loginButton" class="lgn">Login</button>
+        </div>
+        <div class="sgn">
+          <button id="signOutButton" class="lgn">SignOut</button>
         </div>
         <div class="reg">
           <p class="reg">Don't have an account? <a href="register.html" onclick="">Register</a></p>
         </div>
       </form>
     </div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="index.js"></script>
-
+    <script type="module" src="index.js"></script>
   </body>
 </html>
