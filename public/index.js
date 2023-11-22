@@ -1,3 +1,4 @@
+alert("Hello From Backend");
 //importing the functions we will use
 const { intializeApp } = require("firebase/app");
 const { getAuth,
