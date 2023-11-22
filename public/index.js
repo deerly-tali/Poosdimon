@@ -1,4 +1,3 @@
-alert("JS working"); //TODO: delete, this is just for debug purposes
 //importing the functions we will use
 const { intializeApp } = require("firebase/app");
 const { getAuth,
