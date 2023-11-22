@@ -1,16 +1,23 @@
-alert("Hello From Backend");
-//importing the functions we will use
-const { intializeApp } = require("firebase/app");
-const { getAuth,
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+import { getAuth,
         signInWithEmailAndPassword,
         onAuthStateChanged,
         signOut
-    } = require("firebase/auth");
+    } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 
 // our Firebase setup
-//const firebaseConfig = require('firebaseConfig.json');
-/*
+const firebaseConfig = {
+    apiKey: "AIzaSyAWNsQGx_Iw_y9e0N5zPqndiv6kk64SRiE",
+    authDomain: "fir-demotest-105b0.firebaseapp.com",
+    databaseURL: "https://fir-demotest-105b0-default-rtdb.firebaseio.com",
+    projectId: "fir-demotest-105b0",
+    storageBucket: "fir-demotest-105b0.appspot.com",
+    messagingSenderId: "505860360257",
+    appId: "1:505860360257:web:91b4277854be27e8501ec0",
+    measurementId: "G-8GC3VQ6N0S"
+  };  
+
 // Initialize Firebase 
 const app = initializeApp(firebaseConfig);//setting up our app
 const auth = getAuth(app);//connecting our auth to our app
@@ -19,10 +26,11 @@ const auth = getAuth(app);//connecting our auth to our app
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
-const signOutButton = document.getElementById('signOutButton');
+//const signOutButton = document.getElementById('signOutButton');
 
 //signing in the user
 const userSignIn = async () => {
+    console.log("entering signIn function");
     const signInEmail = email.value;
     const signInPassword = password.value;
 
@@ -43,12 +51,12 @@ const userSignIn = async () => {
 const checkAuthState = async () => {
     onAuthStateChanged(auth, user => {
         if(user){ //if true then user exists && is signed in && are authenticated
-            alert("You're signed in!");
+            console.log("You're signed in!");
             //TODO: redirect to game
             //window.location.href("game.html");
 
         }else{
-            alert("You're not signed in!");
+            console.log("You're not signed in!");
             //TODO: add some logic here
         }
     });
@@ -60,5 +68,4 @@ const userSignOut = async () => {
 
 checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
-signOutButton.addEventListener('click', userSignOut);
-*/
+//signOutButton.addEventListener('click', userSignOut);
