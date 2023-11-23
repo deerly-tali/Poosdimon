@@ -10,14 +10,16 @@
 
   <body>
 
-    <img class="title" src="images/Title.png">
+    <img class="title" src="images/Title.png" alt="Title">
     <div class="box">
       <form action="">
         <h1>Login</h1>
+        <p>Email:</p>
         <div class="input-box">
-          <input type="text" placeholder="Username" required>
+          <input type="email" placeholder="Email" required>
           <img class="pokeball" src="images/pokeBall.png">
         </div>
+        <p>Password:</p>
         <div class="input-box">
           <input type="password" placeholder="Password" required>
           <img class="pokeball" src="images/pokeBall.png">
@@ -48,6 +50,6 @@
       };
       firebase.initializeApp(firebaseConfig);
     </script>
-
+    <script src="login.js"></script>
   </body>
 </html>

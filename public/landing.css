@@ -29,6 +29,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background: gainsboro;
     background-size: contain;
     width: 55vw;
@@ -47,6 +48,12 @@ body {
     margin-top: 15px;
     margin-bottom: 30px;
     font-size: 6vw;
+}
+
+.box p {
+    font-size: 2rem;
+    margin: -1px;
+    text-align: left;
 }
 
 .input-box {
