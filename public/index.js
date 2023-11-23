@@ -39,7 +39,7 @@ const userSignIn = async (event) => {
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        alert("Welcome Back!");
+        console.log("Welcome Baack!");
     })
     .catch ((error) => {
         const errCode = error.code;
