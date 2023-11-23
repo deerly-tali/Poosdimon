@@ -1,3 +1,6 @@
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+
+// Check that passwords match
 var password = document.getElementById("password"), 
 confirm_password = document.getElementById("confirm_password");
 
