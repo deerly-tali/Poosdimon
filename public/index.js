@@ -30,6 +30,7 @@ const loginButton = document.getElementById('loginButton');
 
 //signing in the user
 const userSignIn = async () => {
+    event.preventDefault();
     console.log("entering signIn function");
     const signInEmail = email.value;
     const signInPassword = password.value;
@@ -66,6 +67,7 @@ const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
 }
 
+//TODO: add event prevent dafault
 checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
 //signOutButton.addEventListener('click', userSignOut);
