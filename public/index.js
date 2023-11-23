@@ -31,7 +31,7 @@ const signOutButton = document.getElementById('signOutButton');
 //signing in the user
 const userSignIn = async (event) => {
     event.preventDefault();
-    console.log("entering signIn function");
+    console.log("Logging in...");
     const signInEmail = email.value;
     const signInPassword = password.value;
 
@@ -53,12 +53,10 @@ const checkAuthState = async () => {
     onAuthStateChanged(auth, user => {
         if(user){ //if true then user exists && is signed in && are authenticated
             console.log("You're signed in!");
-            //TODO: redirect to game
-            //window.location.href("game.html");
+            window.location.href="game.html";
 
         }else{
             console.log("You're not signed in!");
-            //TODO: add some logic here
         }
     });
 }
