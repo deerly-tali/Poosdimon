@@ -26,7 +26,7 @@ const auth = getAuth(app);//connecting our auth to our app
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
-const signOutButton = document.getElementById('signOutButton');
+const signOutBttn = document.getElementById('signOutButton');
 
 //signing in the user
 const userSignIn = async (event) => {
@@ -68,4 +68,6 @@ const userSignOut = async () => {
 //TODO: add event prevent dafault
 checkAuthState(); //let's check authstate
 loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
-signOutButton.addEventListener('click', userSignOut);
+signOutBttn.addEventListener('click', userSignOut);
+
+export {app, auth};
