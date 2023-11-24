@@ -45,7 +45,7 @@ const userSignIn = async (event) => {
         const errCode = error.code;
         const errMessage = error.message;
         console.log(errCode + errMessage);
-        alert(errMessage);
+        alert(errMessage + "Please Try Again!");
     });
 }
 
@@ -57,7 +57,6 @@ const checkAuthState = async () => {
 
         }else{
             console.log("You're not signed in!");
-            window.location.href("index.html");
         }
     });
 }

@@ -1,3 +1,5 @@
+import {app , auth} from './index';
+
 const mapData = {
     minX: 1,
     maxX: 14,
