@@ -57,6 +57,7 @@ const checkAuthState = async () => {
 
         }else{
             console.log("You're not signed in!");
+            window.location.href("index.html");
         }
     });
 }

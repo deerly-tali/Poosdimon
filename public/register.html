@@ -6,10 +6,33 @@
     </head>
 
     <body>
+        <a href="index.html">
+            <img class="title" src="images/Title.png" alt="Title">
+        </a>
         <div class="box">
-            <h1>Register</h1>
-            
+            <form action="">
+                <h1>Register</h1>
+                <p>Email:</p>
+                <div class="input-box">
+                    <input type="email" placeholder="Email" required>
+                    <img class="pokeball" src="images/pokeBall.png">
+                </div>
+                <p>Password:</p>
+                <div class="input-box">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <img class="pokeball" src="images/pokeBall.png">
+                </div>
+                <p>Confirm Password:</p>
+                <div class="input-box">
+                    <input type="password" id="confirm_password" placeholder="Confirm Password" required>
+                    <img class="pokeball" src="images/pokeBall.png">
+                </div>
+                <div class="lgn">
+                    <button type="submit" class="lgn" onclick="validatePassword()">Register</button>
+                </div>
+            </form>
         </div>
+        <script src="login.js"></script>
     </body>
 
 </html>

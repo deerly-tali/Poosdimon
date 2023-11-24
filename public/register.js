@@ -1,8 +1,9 @@
 import { app, auth} from './index';
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import { onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 const email = document.getElementById("email"); 
 const password = document.getElementById("password");
+const signUpButton = document.getElementById("signUpButton");
 
 const createUser = async (event) => {
     event.preventDefault();
@@ -15,8 +16,12 @@ const createUser = async (event) => {
 
     })
     .catch((error) => {
-        console.log(error.code + error.message);
-        alert(error.message);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+        alert(errorMessage);
     });
-
 }
+
+checkAuthState();
+signUpButton.addEventListener('click', createUser);
