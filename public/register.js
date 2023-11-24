@@ -1,5 +1,5 @@
-import { app, auth} from './index';
-import { onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import { checkAuthState, auth} from './index';
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 const email = document.getElementById("email"); 
 const password = document.getElementById("password");
