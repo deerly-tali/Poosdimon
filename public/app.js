@@ -139,8 +139,8 @@ const mapData = {
   
     function placeCoin() {
       const { x, y } = getRandomSafeSpot();
-      const coinRef = firebase.database().ref(`coins/${getKeyString(x, y)}`);
-      coinRef.set({
+      const coinRef = ref(database,`coins/${getKeyString(x, y)}`);
+      set(coinRef, {
         x,
         y,
       })
@@ -352,14 +352,6 @@ const mapData = {
         window.location.href="index.html";
       }
     })
-  /*
-    firebase.auth().signInAnonymously().catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-      console.log(errorCode, errorMessage);
-    });*/
-  
   
   })();
   
