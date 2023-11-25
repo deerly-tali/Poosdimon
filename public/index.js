@@ -49,18 +49,6 @@ const userSignIn = async (event) => {
         alert(errMessage + "Please Try Again!");
     });
 }
-/*
-const checkAuthState = async () => {
-    onAuthStateChanged(auth, user => {
-        if(user){ //if true then user exists && is signed in && are authenticated
-            //console.log("You're signed in!");
-            window.location.href="game.html";
-
-        }else{
-            console.log("You're not signed in!");
-        }
-    });
-}*/
 
 const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
