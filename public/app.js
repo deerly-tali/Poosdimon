@@ -1,5 +1,8 @@
 import {app , auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import {getDatabase, remove} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+const database = app.getDatabase(); //getting out RealTime Database
 
 const mapData = {
     minX: 1,
@@ -297,13 +300,14 @@ const mapData = {
       placeCoin();
   
     }
-  /*
-    onAuthStateChanged((user) => {
+  
+    onAuthStateChanged(auth, user => {
       console.log(user)
       if (user) {
         //You're logged in!
         playerId = user.uid;
-        playerRef = firebase.database().ref(`players/${playerId}`);
+        playerRef = 
+       // playerRef = firebase.database().ref(`players/${playerId}`);
   
         const name = createName();
         playerNameInput.value = name;
@@ -327,16 +331,17 @@ const mapData = {
         //Begin the game now that we are signed in
         initGame();
       } else {
-        //You're logged out.
+        //You're logged out. this should be impssible
+        window.location.href="index.html";
       }
     })
-  */
+  /*
     firebase.auth().signInAnonymously().catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
       console.log(errorCode, errorMessage);
-    });
+    });*/
   
   
   })();
