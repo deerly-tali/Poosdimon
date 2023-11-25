@@ -54,8 +54,6 @@ const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
 }
 
-//TODO: add event prevent dafault
-//checkAuthState(); //let's check authstate
 if (loginButton){
     loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
 }
