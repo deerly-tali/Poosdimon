@@ -1,19 +1,18 @@
-import { checkAuthState, auth} from './index';
+import { auth} from './index';
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
-const email = document.getElementById("email"); 
-const password = document.getElementById("password");
 const signUpButton = document.getElementById("signUpButton");
 
 const createUser = async (event) => {
     event.preventDefault();
     console.log("Creating user...");
-    const signUpEmail = email.value;
-    const signUpPassword = password.value;
+    const signUpEmail = document.getElementById("email").value;
+    const signUpPassword = document.getElementById("password").value;
 
     createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
     .then((userCredential) => {
-        
+        console.log("Welcome to Poosdimon");
+        window.location.href="game.html";
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -23,5 +22,4 @@ const createUser = async (event) => {
     });
 }
 
-checkAuthState();
 signUpButton.addEventListener('click', createUser);

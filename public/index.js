@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAuth,
         signInWithEmailAndPassword,
-        onAuthStateChanged,
         signOut
     } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
@@ -23,8 +22,6 @@ const app = initializeApp(firebaseConfig);//setting up our app
 const auth = getAuth(app);//connecting our auth to our app
 
 //elements needed for user signin
-//const email = document.getElementById('email');
-//const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
 const signOutBttn = document.getElementById('signOutButton');
 
