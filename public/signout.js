@@ -5,8 +5,16 @@ const signOutButton = document.getElementById('signOutButton');
 
 const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
+
+    onAuthStateChanged (auth, user => {
+        if(!user){
+            console.log("Goodbye!");
+            window.location.href="index.html";
+        }
+    });
 }
 
+/*
 const checkSignOut = async () => {
     onAuthStateChanged(auth, user => {
         if(!user){ //if true then user exists && is signed in && are authenticated
@@ -14,10 +22,9 @@ const checkSignOut = async () => {
             window.location.href="index.html";
 
         }else{
-            console.log("You're Still Signed In!");
         }
     });
-}
+}*/
 
-checkSignOut();
+//checkSignOut();
 signOutButton.addEventListener('click', userSignOut);

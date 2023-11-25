@@ -23,8 +23,8 @@ const app = initializeApp(firebaseConfig);//setting up our app
 const auth = getAuth(app);//connecting our auth to our app
 
 //elements needed for user signin
-const email = document.getElementById('email');
-const password = document.getElementById('password');
+//const email = document.getElementById('email');
+//const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
 const signOutBttn = document.getElementById('signOutButton');
 
@@ -32,14 +32,15 @@ const signOutBttn = document.getElementById('signOutButton');
 const userSignIn = async (event) => {
     event.preventDefault();
     console.log("Logging in...");
-    const signInEmail = email.value;
-    const signInPassword = password.value;
+    const signInEmail = document.getElementById('email').value;
+    const signInPassword =document.getElementById('password').value;
 
     signInWithEmailAndPassword(auth, signInEmail,signInPassword) //using Firebase Auth function
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
         console.log("Welcome Baack!");
+        window.location.href="game.html";
     })
     .catch ((error) => {
         const errCode = error.code;
@@ -48,26 +49,28 @@ const userSignIn = async (event) => {
         alert(errMessage + "Please Try Again!");
     });
 }
-
+/*
 const checkAuthState = async () => {
     onAuthStateChanged(auth, user => {
         if(user){ //if true then user exists && is signed in && are authenticated
-            console.log("You're signed in!");
-            //window.location.href="game.html";
+            //console.log("You're signed in!");
+            window.location.href="game.html";
 
         }else{
             console.log("You're not signed in!");
         }
     });
-}
+}*/
 
 const userSignOut = async () => {
     await signOut(auth); //signout user via Firebase Auth
 }
 
 //TODO: add event prevent dafault
-checkAuthState(); //let's check authstate
-loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
+//checkAuthState(); //let's check authstate
+if (loginButton){
+    loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
+}
 signOutBttn.addEventListener('click', userSignOut);
 
 export {app, auth};
