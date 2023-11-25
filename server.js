@@ -1,5 +1,6 @@
 const express = require("express"); //espress for backend
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 8080; //local port to test on, can change port if needed
@@ -44,7 +45,6 @@ app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api
 
 //signup a user
 app.post('/signup', async (req, res) => { //make POST request with new user info
-    console.log(req.body); //to debug
 
     try{
         const newUser = {
@@ -79,34 +79,25 @@ app.post('/login', async (req,res) =>{ //POST request
 
        const userLoginResponse = await admin.auth().getUserByEmail(user.email)
        .then((userRecord) =>{
+            const user = userRecord.user;
 
-            if(userRecord.passwordHash == user.password){ //TODO: passwordHash is returned null by firebase auth
-                console.log(`password : ${userRecord.passwordHash}`);
+            if(user){ //TODO: passwordHash is returned null by firebase auth
+                console.log("Logged In!");
                 res.json(userRecord);
 
             }else{
-                console.log("password doesn't match");
-                res.status(409).send(`password hash ${userRecord.passwordHash}`);
+                console.log("No user");
+                res.status(409).send("User Not Found");
             }
-       }
-       );
-
+       })
+       .catch((error) => {
+            console.log(error);
+            res.status(409).send(error.message);
+       });
 
     }catch(error){
         console.log(error.message);
         res.status(404).send(error.message);
-    }
-});
-
-
-//logging out a user
-app.post('/logout', async (req,res) => {
-    try{
-        console.log("not implemented yet");
-        
-    }catch(error){
-        console.log(error);
-        res.status(500).send(error);
     }
 });
 
