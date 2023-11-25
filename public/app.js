@@ -1,6 +1,7 @@
-import {app , auth} from './index.js';
+import {auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import {getDatabase, 
+        on,
         onDisconnect,
         ref, 
         remove, 
