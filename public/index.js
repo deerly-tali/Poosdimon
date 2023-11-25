@@ -54,6 +54,9 @@ const userSignOut = async () => {
 if (loginButton){
     loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
 }
-signOutBttn.addEventListener('click', userSignOut);
+
+if(signOutBttn){
+    signOutBttn.addEventListener('click', userSignOut);
+}
 
 export {app, auth};

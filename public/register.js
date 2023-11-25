@@ -1,4 +1,4 @@
-import { auth} from './index';
+import { auth} from './index.js';
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 const signUpButton = document.getElementById("signUpButton");
