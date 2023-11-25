@@ -155,7 +155,8 @@ const mapData = {
       const key = getKeyString(x, y);
       if (coins[key]) {
         // Remove this key from data, then uptick Player's coin count
-        firebase.database().ref(`coins/${key}`).remove();
+        remove(ref(databse,`coins/${key}`));
+        //firebase.database().ref(`coins/${key}`).remove();
         playerRef.update({
           coins: players[playerId].coins + 1,
         })
@@ -188,8 +189,8 @@ const mapData = {
       new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
       new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0))
   
-      const allPlayersRef = firebase.database().ref(`players`);
-      const allCoinsRef = firebase.database().ref(`coins`);
+      const allPlayersRef = ref(database,`players`);
+      const allCoinsRef = ref(database,`coins`);
   
       allPlayersRef.on("value", (snapshot) => {
         //Fires whenever a change occurs
