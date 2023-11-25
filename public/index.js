@@ -23,7 +23,6 @@ const auth = getAuth(app);//connecting our auth to our app
 
 //elements needed for user signin
 const loginButton = document.getElementById('loginButton');
-const signOutBttn = document.getElementById('signOutButton');
 
 //signing in the user
 const userSignIn = async (event) => {
@@ -47,16 +46,8 @@ const userSignIn = async (event) => {
     });
 }
 
-const userSignOut = async () => {
-    await signOut(auth); //signout user via Firebase Auth
-}
-
 if (loginButton){
     loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
-}
-
-if(signOutBttn){
-    signOutBttn.addEventListener('click', userSignOut);
 }
 
 export {app, auth};
