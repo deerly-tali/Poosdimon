@@ -344,7 +344,6 @@ const mapData = {
   */
 
         //TODO: remove me from Firebase when I diconnect
-        //onDisconnect(database).remove();
         //playerRef.onDisconnect().remove();
   
         //Begin the game now that we are signed in
