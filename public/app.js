@@ -1,7 +1,6 @@
 import {auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import {getDatabase, 
-        on,
         onDisconnect,
         ref, 
         remove, 
@@ -344,6 +343,7 @@ const mapData = {
   */
 
         //TODO: remove me from Firebase when I diconnect
+        onDisconnect(playerRef).remove().catch((error) => console.log(error));
         //playerRef.onDisconnect().remove();
   
         //Begin the game now that we are signed in
