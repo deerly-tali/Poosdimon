@@ -1,5 +1,6 @@
 const express = require("express"); //espress for backend
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 8080; //local port to test on, can change port if needed

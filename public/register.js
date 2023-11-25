@@ -13,7 +13,7 @@ const createUser = async (event) => {
 
     createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
     .then((userCredential) => {
-
+        
     })
     .catch((error) => {
         const errorCode = error.code;

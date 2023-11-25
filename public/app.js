@@ -1,4 +1,5 @@
-import {app , auth} from './index';
+import {app , auth} from './index.js';
+import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 const mapData = {
     minX: 1,
@@ -296,8 +297,8 @@ const mapData = {
       placeCoin();
   
     }
-  
-    firebase.auth().onAuthStateChanged((user) => {
+  /*
+    onAuthStateChanged((user) => {
       console.log(user)
       if (user) {
         //You're logged in!
@@ -329,7 +330,7 @@ const mapData = {
         //You're logged out.
       }
     })
-  
+  */
     firebase.auth().signInAnonymously().catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
