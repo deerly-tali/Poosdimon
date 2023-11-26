@@ -183,7 +183,6 @@ const mapData = {
         set(playerRef,
           players[playerId]
         );
-        //playerRef.set(players[playerId]);
         attemptGrabCoin(newX, newY);
       }
     }
@@ -349,7 +348,7 @@ const mapData = {
         initGame();
       } else {
         //You're logged out. this should be impssible
-        window.location.href="index.html";
+        window.location.href="index.html"; //just to be safe we will redirect you
       }
     })
   
