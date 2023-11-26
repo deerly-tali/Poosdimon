@@ -230,6 +230,37 @@ const mapData = {
         })
       })
       */
+
+      onChildAdded(allPlayersRef, (snapshot) => {
+        //Fires whenever a new node is added the tree
+        const addedPlayer = snapshot.val();
+        const characterElement = document.createElement("div");
+        characterElement.classList.add("Character", "grid-cell");
+        if (addedPlayer.id === playerId) {
+          characterElement.classList.add("you");
+        }
+        characterElement.innerHTML = (`
+          <div class="Character_shadow grid-cell"></div>
+          <div class="Character_sprite grid-cell"></div>
+          <div class="Character_name-container">
+            <span class="Character_name"></span>
+            <span class="Character_coins">0</span>
+          </div>
+          <div class="Character_you-arrow"></div>
+        `);
+        playerElements[addedPlayer.id] = characterElement;
+  
+        //Fill in some initial state
+        characterElement.querySelector(".Character_name").innerText = addedPlayer.name;
+        characterElement.querySelector(".Character_coins").innerText = addedPlayer.coins;
+        characterElement.setAttribute("data-color", addedPlayer.color);
+        characterElement.setAttribute("data-direction", addedPlayer.direction);
+        const left = 16 * addedPlayer.x + "px";
+        const top = 16 * addedPlayer.y - 4 + "px";
+        characterElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+        gameContainer.appendChild(characterElement);
+      });
+      /*
       allPlayersRef.on("child_added", (snapshot) => {
         //Fires whenever a new node is added the tree
         const addedPlayer = snapshot.val();
@@ -259,7 +290,7 @@ const mapData = {
         characterElement.style.transform = `translate3d(${left}, ${top}, 0)`;
         gameContainer.appendChild(characterElement);
       })
-  
+  */
   
       //Remove character DOM element after they leave
       allPlayersRef.on("child_removed", (snapshot) => {
