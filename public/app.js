@@ -159,7 +159,7 @@ const mapData = {
       const key = getKeyString(x, y);
       if (coins[key]) {
         // Remove this key from data, then uptick Player's coin count
-        remove(ref(databse,`coins/${key}`));
+        remove(ref(database,`coins/${key}`));
         playerRef.update({
           coins: players[playerId].coins + 1,
         })
@@ -180,7 +180,10 @@ const mapData = {
         if (xChange === -1) {
           players[playerId].direction = "left";
         }
-        playerRef.set(players[playerId]);
+        set(playerRef,
+          players[playerId]
+        );
+        //playerRef.set(players[playerId]);
         attemptGrabCoin(newX, newY);
       }
     }
