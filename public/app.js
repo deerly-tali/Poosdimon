@@ -397,9 +397,13 @@ const mapData = {
       playerColorButton.addEventListener("click", () => {
         const mySkinIndex = playerColors.indexOf(players[playerId].color);
         const nextColor = playerColors[mySkinIndex + 1] || playerColors[0];
+        update(playerRef, {
+          color: nextColor
+        });
+        /*
         playerRef.update({
           color: nextColor
-        })
+        })*/
       })
   
       //Place my first coin
