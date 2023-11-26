@@ -15,10 +15,10 @@
   
   .game-container { 
     position: relative;
-    width: 240px;
-    height: 208px;
+    width: 1032px;
+    height: 785px;
     background: url(/images/map.png) no-repeat no-repeat;
-    transform: scale(3);
+    transform: scale(1);
     image-rendering: pixelated;
   }
   

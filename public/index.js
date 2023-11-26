@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAuth,
+        signInAnonymously,
         signInWithEmailAndPassword,
-        signOut
     } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 
 
@@ -23,6 +23,7 @@ const auth = getAuth(app);//connecting our auth to our app
 
 //elements needed for user signin
 const loginButton = document.getElementById('loginButton');
+const anonButton = document.getElementById('anonLoginButton');
 
 //signing in the user
 const userSignIn = async (event) => {
@@ -46,8 +47,25 @@ const userSignIn = async (event) => {
     });
 }
 
+const anonSignIn = async (event) => {
+    event.preventDefault();
+    signInAnonymously(auth)
+    .then(() => {
+        console.log("Anon Mode");
+        window.location.href = "game.html";
+    })
+    .catch((error) => {
+        console.log(error.code + error.message);
+        alert(error.message);
+    });
+}
+
 if (loginButton){
     loginButton.addEventListener('click', userSignIn); //connecting frontend to backend
+}
+
+if(anonButton){
+    anonButton.addEventListener('click', anonSignIn);
 }
 
 export {app, auth};
