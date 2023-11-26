@@ -364,12 +364,21 @@ const mapData = {
         gameContainer.appendChild(coinElement);
       })
       */
+
+      onChildRemoved(allCoinsRef, (snapshot) => {
+        const {x,y} = snapshot.val();
+        const keyToRemove = getKeyString(x,y);
+        gameContainer.removeChild( coinElements[keyToRemove] );
+        delete coinElements[keyToRemove];
+      });
+      /*
       allCoinsRef.on("child_removed", (snapshot) => {
         const {x,y} = snapshot.val();
         const keyToRemove = getKeyString(x,y);
         gameContainer.removeChild( coinElements[keyToRemove] );
         delete coinElements[keyToRemove];
       })
+      */
   
   
       //Updates player name with text input
