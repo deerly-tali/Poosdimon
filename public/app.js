@@ -1,5 +1,17 @@
-import {app , auth} from './index.js';
+import {auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import {getDatabase, 
+        onChildAdded,
+        onChildRemoved,
+        onDisconnect,
+        onValue,
+        ref, 
+        remove, 
+        set,
+        update
+      } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+const database = getDatabase(); //getting out RealTime Database
 
 const mapData = {
     minX: 1,
@@ -131,8 +143,8 @@ const mapData = {
   
     function placeCoin() {
       const { x, y } = getRandomSafeSpot();
-      const coinRef = firebase.database().ref(`coins/${getKeyString(x, y)}`);
-      coinRef.set({
+      const coinRef = ref(database,`coins/${getKeyString(x, y)}`);
+      set(coinRef, {
         x,
         y,
       })
@@ -147,10 +159,10 @@ const mapData = {
       const key = getKeyString(x, y);
       if (coins[key]) {
         // Remove this key from data, then uptick Player's coin count
-        firebase.database().ref(`coins/${key}`).remove();
-        playerRef.update({
+        remove(ref(database,`coins/${key}`));
+        update(playerRef, {
           coins: players[playerId].coins + 1,
-        })
+        });
       }
     }
   
@@ -168,7 +180,9 @@ const mapData = {
         if (xChange === -1) {
           players[playerId].direction = "left";
         }
-        playerRef.set(players[playerId]);
+        set(playerRef,
+          players[playerId]
+        );
         attemptGrabCoin(newX, newY);
       }
     }
@@ -180,10 +194,10 @@ const mapData = {
       new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
       new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0))
   
-      const allPlayersRef = firebase.database().ref(`players`);
-      const allCoinsRef = firebase.database().ref(`coins`);
+      const allPlayersRef = ref(database,`players`);
+      const allCoinsRef = ref(database,`coins`);
   
-      allPlayersRef.on("value", (snapshot) => {
+      onValue(allPlayersRef, (snapshot) => {
         //Fires whenever a change occurs
         players = snapshot.val() || {};
         Object.keys(players).forEach((key) => {
@@ -198,8 +212,10 @@ const mapData = {
           const top = 16 * characterState.y - 4 + "px";
           el.style.transform = `translate3d(${left}, ${top}, 0)`;
         })
-      })
-      allPlayersRef.on("child_added", (snapshot) => {
+      });
+
+
+      onChildAdded(allPlayersRef, (snapshot) => {
         //Fires whenever a new node is added the tree
         const addedPlayer = snapshot.val();
         const characterElement = document.createElement("div");
@@ -227,25 +243,25 @@ const mapData = {
         const top = 16 * addedPlayer.y - 4 + "px";
         characterElement.style.transform = `translate3d(${left}, ${top}, 0)`;
         gameContainer.appendChild(characterElement);
-      })
-  
+      });
+      
   
       //Remove character DOM element after they leave
-      allPlayersRef.on("child_removed", (snapshot) => {
+      onChildRemoved(allPlayersRef, (snapshot) => {
         const removedKey = snapshot.val().id;
         gameContainer.removeChild(playerElements[removedKey]);
         delete playerElements[removedKey];
-      })
-  
+      });
+      
   
       //New - not in the video!
       //This block will remove coins from local state when Firebase `coins` value updates
-      allCoinsRef.on("value", (snapshot) => {
+      onValue(allCoinsRef, (snapshot) => {
         coins = snapshot.val() || {};
       });
-      //
-  
-      allCoinsRef.on("child_added", (snapshot) => {
+      
+
+      onChildAdded(allCoinsRef, (snapshot) => {
         const coin = snapshot.val();
         const key = getKeyString(coin.x, coin.y);
         coins[key] = true;
@@ -266,52 +282,56 @@ const mapData = {
         // Keep a reference for removal later and add to DOM
         coinElements[key] = coinElement;
         gameContainer.appendChild(coinElement);
-      })
-      allCoinsRef.on("child_removed", (snapshot) => {
+      });
+ 
+
+      onChildRemoved(allCoinsRef, (snapshot) => {
         const {x,y} = snapshot.val();
         const keyToRemove = getKeyString(x,y);
         gameContainer.removeChild( coinElements[keyToRemove] );
         delete coinElements[keyToRemove];
-      })
+      });
+     
   
   
       //Updates player name with text input
       playerNameInput.addEventListener("change", (e) => {
         const newName = e.target.value || createName();
         playerNameInput.value = newName;
-        playerRef.update({
+        update(playerRef, {
           name: newName
-        })
+        });
+        
       })
   
       //Update player color on button click
       playerColorButton.addEventListener("click", () => {
         const mySkinIndex = playerColors.indexOf(players[playerId].color);
         const nextColor = playerColors[mySkinIndex + 1] || playerColors[0];
-        playerRef.update({
+        update(playerRef, {
           color: nextColor
-        })
+        });
+        
       })
   
       //Place my first coin
       placeCoin();
   
     }
-  /*
-    onAuthStateChanged((user) => {
+  
+    onAuthStateChanged(auth, user => {
       console.log(user)
       if (user) {
         //You're logged in!
         playerId = user.uid;
-        playerRef = firebase.database().ref(`players/${playerId}`);
+        playerRef = ref(database, `players/${playerId}`);
   
         const name = createName();
         playerNameInput.value = name;
   
         const {x, y} = getRandomSafeSpot();
-  
-  
-        playerRef.set({
+
+        set(playerRef, {
           id: playerId,
           name,
           direction: "right",
@@ -320,24 +340,17 @@ const mapData = {
           y,
           coins: 0,
         })
-  
-        //Remove me from Firebase when I diconnect
-        playerRef.onDisconnect().remove();
+
+        //remove me from Firebase when I diconnect
+        onDisconnect(playerRef).remove().catch((error) => console.log(error));
   
         //Begin the game now that we are signed in
         initGame();
       } else {
-        //You're logged out.
+        //You're logged out. this should be impssible
+        window.location.href="index.html"; //just to be safe we will redirect you
       }
     })
-  */
-    firebase.auth().signInAnonymously().catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-      console.log(errorCode, errorMessage);
-    });
-  
   
   })();
   
