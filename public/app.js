@@ -1,11 +1,14 @@
 import {auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import {getDatabase, 
+        onChildAdded,
+        onChildRemoved,
         onDisconnect,
         onValue,
         ref, 
         remove, 
-        set
+        set,
+        update
       } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 
 const database = getDatabase(); //getting out RealTime Database
@@ -332,7 +335,6 @@ const mapData = {
         //You're logged in!
         playerId = user.uid;
         playerRef = ref(database, `players/${playerId}`);
-       // playerRef = firebase.database().ref(`players/${playerId}`);
   
         const name = createName();
         playerNameInput.value = name;
@@ -348,22 +350,9 @@ const mapData = {
           y,
           coins: 0,
         })
-  
-  /*
-        playerRef.set({
-          id: playerId,
-          name,
-          direction: "right",
-          color: randomFromArray(playerColors),
-          x,
-          y,
-          coins: 0,
-        })
-  */
 
         //remove me from Firebase when I diconnect
         onDisconnect(playerRef).remove().catch((error) => console.log(error));
-        //playerRef.onDisconnect().remove();
   
         //Begin the game now that we are signed in
         initGame();
