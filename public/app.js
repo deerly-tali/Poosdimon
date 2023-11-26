@@ -317,7 +317,30 @@ const mapData = {
       });
       */
       //
+
+      onChildAdded(allCoinsRef, (snapshot) => {
+        const coin = snapshot.val();
+        const key = getKeyString(coin.x, coin.y);
+        coins[key] = true;
   
+        // Create the DOM Element
+        const coinElement = document.createElement("div");
+        coinElement.classList.add("Coin", "grid-cell");
+        coinElement.innerHTML = `
+          <div class="Coin_shadow grid-cell"></div>
+          <div class="Coin_sprite grid-cell"></div>
+        `;
+  
+        // Position the Element
+        const left = 16 * coin.x + "px";
+        const top = 16 * coin.y - 4 + "px";
+        coinElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+  
+        // Keep a reference for removal later and add to DOM
+        coinElements[key] = coinElement;
+        gameContainer.appendChild(coinElement);
+      });
+  /*
       allCoinsRef.on("child_added", (snapshot) => {
         const coin = snapshot.val();
         const key = getKeyString(coin.x, coin.y);
@@ -340,6 +363,7 @@ const mapData = {
         coinElements[key] = coinElement;
         gameContainer.appendChild(coinElement);
       })
+      */
       allCoinsRef.on("child_removed", (snapshot) => {
         const {x,y} = snapshot.val();
         const keyToRemove = getKeyString(x,y);
