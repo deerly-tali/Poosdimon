@@ -262,24 +262,23 @@ const mapData = {
   
   
       //Remove character DOM element after they leave
-      onValue(allPlayersRef, (snapshot) => {
-        const removedKey = snapshot.val().id;
-        gameContainer.removeChild(playerElements[removedKey]);
-        delete playerElements[removedKey];
-      });
-      /*
       allPlayersRef.on("child_removed", (snapshot) => {
         const removedKey = snapshot.val().id;
         gameContainer.removeChild(playerElements[removedKey]);
         delete playerElements[removedKey];
       })
-  */
+  
   
       //New - not in the video!
       //This block will remove coins from local state when Firebase `coins` value updates
+      onValue(allCoinsRef, (snapshot) => {
+        coins = snapshot.val() || {};
+      });
+      /*
       allCoinsRef.on("value", (snapshot) => {
         coins = snapshot.val() || {};
       });
+      */
       //
   
       allCoinsRef.on("child_added", (snapshot) => {
