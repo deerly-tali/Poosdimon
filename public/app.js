@@ -160,9 +160,13 @@ const mapData = {
       if (coins[key]) {
         // Remove this key from data, then uptick Player's coin count
         remove(ref(database,`coins/${key}`));
+        update(playerRef, {
+          coins: players[playerId].coins + 1,
+        });
+        /*
         playerRef.update({
           coins: players[playerId].coins + 1,
-        })
+        })*/
       }
     }
   
