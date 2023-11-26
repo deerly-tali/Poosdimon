@@ -160,7 +160,6 @@ const mapData = {
       if (coins[key]) {
         // Remove this key from data, then uptick Player's coin count
         remove(ref(databse,`coins/${key}`));
-        //firebase.database().ref(`coins/${key}`).remove();
         playerRef.update({
           coins: players[playerId].coins + 1,
         })
@@ -385,9 +384,13 @@ const mapData = {
       playerNameInput.addEventListener("change", (e) => {
         const newName = e.target.value || createName();
         playerNameInput.value = newName;
+        update(playerRef, {
+          name: newName
+        });
+        /*
         playerRef.update({
           name: newName
-        })
+        })*/
       })
   
       //Update player color on button click
