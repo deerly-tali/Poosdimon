@@ -2,6 +2,7 @@ import {auth} from './index.js';
 import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import {getDatabase, 
         onDisconnect,
+        onValue,
         ref, 
         remove, 
         set
@@ -192,6 +193,23 @@ const mapData = {
       const allPlayersRef = ref(database,`players`);
       const allCoinsRef = ref(database,`coins`);
   
+      onValue(allPlayersRef, (snapshot) => {
+        //Fires whenever a change occurs
+        players = snapshot.val() || {};
+        Object.keys(players).forEach((key) => {
+          const characterState = players[key];
+          let el = playerElements[key];
+          // Now update the DOM
+          el.querySelector(".Character_name").innerText = characterState.name;
+          el.querySelector(".Character_coins").innerText = characterState.coins;
+          el.setAttribute("data-color", characterState.color);
+          el.setAttribute("data-direction", characterState.direction);
+          const left = 16 * characterState.x + "px";
+          const top = 16 * characterState.y - 4 + "px";
+          el.style.transform = `translate3d(${left}, ${top}, 0)`;
+        })
+      });
+      /*
       allPlayersRef.on("value", (snapshot) => {
         //Fires whenever a change occurs
         players = snapshot.val() || {};
@@ -208,6 +226,7 @@ const mapData = {
           el.style.transform = `translate3d(${left}, ${top}, 0)`;
         })
       })
+      */
       allPlayersRef.on("child_added", (snapshot) => {
         //Fires whenever a new node is added the tree
         const addedPlayer = snapshot.val();
@@ -342,7 +361,7 @@ const mapData = {
         })
   */
 
-        //TODO: remove me from Firebase when I diconnect
+        //remove me from Firebase when I diconnect
         onDisconnect(playerRef).remove().catch((error) => console.log(error));
         //playerRef.onDisconnect().remove();
   
