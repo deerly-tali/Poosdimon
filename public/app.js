@@ -1,5 +1,5 @@
 import {auth} from './index.js';
-import {onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import {getDatabase, 
         onChildAdded,
         onChildRemoved,
@@ -358,6 +358,3 @@ const mapData = {
     })
   
   })();
-
-  export {database};
-  
