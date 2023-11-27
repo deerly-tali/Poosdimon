@@ -166,6 +166,19 @@ const mapData = {
       }
     }
   
+    function updateCamera() {
+      const characterElement = document.querySelector('.Character.you');
+      const gameContainer = document.querySelector('.game-container');
+    
+      // Calculate the new scroll position
+      const left = characterElement.offsetLeft - gameContainer.offsetWidth / 2;
+      const top = characterElement.offsetTop - gameContainer.offsetHeight / 2;
+    
+      // Update the scroll position
+      gameContainer.scrollLeft = left;
+      gameContainer.scrollTop = top;
+    }
+    
   
     function handleArrowPress(xChange=0, yChange=0) {
       const newX = players[playerId].x + xChange;
@@ -183,9 +196,13 @@ const mapData = {
         set(playerRef,
           players[playerId]
         );
+        updateCamera();
         attemptGrabCoin(newX, newY);
       }
     }
+
+
+    window.handleArrowPress = handleArrowPress;
   
     function initGame() {
   

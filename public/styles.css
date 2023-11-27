@@ -18,9 +18,13 @@
     width: 1032px;
     height: 785px;
     background: url(/images/map.png) no-repeat no-repeat;
-    transform: scale(1);
+    background-size: contain;  /* Scale the image to the largest size such that both its width and its height can fit inside the content area */
+    background-position: center;  /* Center the background image */
     image-rendering: pixelated;
+    overflow: hidden;  /* Hide overflowed content */
   }
+  
+  
   
   .player-info {
     position: absolute;
@@ -152,3 +156,39 @@
   .Coin_shadow {
     background: url(/images/coin-shadow.png) no-repeat no-repeat;
   }
+
+  /* D-pad controls */
+#dpad {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  opacity: 0.5;
+  display: grid;
+  grid-template-areas:
+      ". up ."
+      "left . right"
+      ". down .";
+}
+
+#dpad button {
+    width: 50px;
+    height: 50px;
+    font-size: 10px;  /* Adjust as needed */
+    padding: 10px;  /* Adjust as needed */
+}
+
+#up {
+    grid-area: up;
+}
+
+#down {
+    grid-area: down;
+}
+
+#left {
+    grid-area: left;
+}
+
+#right {
+    grid-area: right;
+}
