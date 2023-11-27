@@ -23,5 +23,4 @@ class KeyPressListener {
       document.removeEventListener("keyup", this.keyupFunction);
     }
   
-  
   }
