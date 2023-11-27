@@ -27,6 +27,8 @@
     width: calc(4px*160);
     height: calc(4px*144);
     overflow: hidden;
+    transition: 0.4s;
+    transform: 0.4s;
     background-color: #01240d;
     position: relative;
   }
