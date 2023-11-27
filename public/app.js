@@ -15,10 +15,11 @@ const database = getDatabase(); //getting out RealTime Database
 
 const mapData = {
     minX: 1,
-    maxX: 14,
+    maxX: 60,
     minY: 4,
-    maxY: 12,
+    maxY: 43,
     blockedSpaces: {
+      /*
       "7x4": true,
       "1x11": true,
       "12x10": true,
@@ -31,6 +32,7 @@ const mapData = {
       "7x9": true,
       "8x9": true,
       "9x9": true,
+      */
     },
   };
   
@@ -100,29 +102,29 @@ const mapData = {
   function getRandomSafeSpot() {
     //We don't look things up by key here, so just return an x/y
     return randomFromArray([
-      { x: 1, y: 4 },
-      { x: 2, y: 4 },
-      { x: 1, y: 5 },
-      { x: 2, y: 6 },
-      { x: 2, y: 8 },
-      { x: 2, y: 9 },
-      { x: 4, y: 8 },
-      { x: 5, y: 5 },
-      { x: 5, y: 8 },
-      { x: 5, y: 10 },
-      { x: 5, y: 11 },
-      { x: 11, y: 7 },
-      { x: 12, y: 7 },
-      { x: 13, y: 7 },
-      { x: 13, y: 6 },
-      { x: 13, y: 8 },
-      { x: 7, y: 6 },
-      { x: 7, y: 7 },
-      { x: 7, y: 8 },
-      { x: 8, y: 8 },
-      { x: 10, y: 8 },
-      { x: 8, y: 8 },
-      { x: 11, y: 4 },
+      { x: 20, y: 10 },
+      { x: 20, y: 14 },
+      { x: 10, y: 15 },
+      { x: 20, y: 16 },
+      { x: 20, y: 18 },
+      { x: 20, y: 19 },
+      { x: 40, y: 18 },
+      { x: 15, y: 15 },
+      { x: 15, y: 18 },
+      { x: 15, y: 10 },
+      { x: 15, y: 11 },
+      { x: 11, y: 17 },
+      { x: 12, y: 17 },
+      { x: 13, y: 17 },
+      { x: 13, y: 16 },
+      { x: 13, y: 18 },
+      { x: 17, y: 16 },
+      { x: 17, y: 17 },
+      { x: 17, y: 18 },
+      { x: 18, y: 18 },
+      { x: 10, y: 18 },
+      { x: 18, y: 18 },
+      { x: 11, y: 14 },
     ]);
   }
   
@@ -183,6 +185,9 @@ const mapData = {
         set(playerRef,
           players[playerId]
         );
+        var camera_left = 16*20;
+        var camera_top = 16*20;
+        gameContainer.style.transform = `translate3d(${-newX*16+camera_left}px, ${-newY*16+camera_top}px, 0)`;
         attemptGrabCoin(newX, newY);
       }
     }
@@ -353,4 +358,6 @@ const mapData = {
     })
   
   })();
+
+  export {database};
   

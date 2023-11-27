@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    background: linear-gradient(180deg, #64BEFF -50%, #6e96ff 69.71%, #2a65ff 150%);
+    background: linear-gradient(180deg, #d09970 -50%, #164628 69.71%, #01240d 150%);
     font-family: 'Source Sans Pro', sans-serif;
     display: flex;
     align-items: center;
@@ -16,10 +16,19 @@
   .game-container { 
     position: relative;
     width: 1032px;
-    height: 785px;
+    height: 788px;
     background: url(/images/map.png) no-repeat no-repeat;
+    background-size: 100%;
     transform: scale(1);
     image-rendering: pixelated;
+  }
+
+  .camera {
+    width: calc(4px*160);
+    height: calc(4px*144);
+    overflow: hidden;
+    background-color: #01240d;
+    position: relative;
   }
   
   .player-info {
@@ -50,7 +59,7 @@
   input[type="text"] {
     outline: 0;
     padding-left: 0.5em;
-    border: 3px solid #222034;
+    border: 3px solid #f8f7fa;
     width: 150px;
     text-transform: uppercase;
   }
@@ -61,9 +70,9 @@
   button {
     padding-left: 0.5em;
     padding-right: 0.5em;
-    background: #59ff5a;
+    background: #016223;
     border: 0;
-    border-bottom: 2px solid #1e830b;
+    border-bottom: 2px solid #0c3205;
     cursor: pointer;
   }
   button:active {

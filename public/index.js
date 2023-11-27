@@ -35,7 +35,6 @@ const userSignIn = async (event) => {
     signInWithEmailAndPassword(auth, signInEmail,signInPassword) //using Firebase Auth function
     .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         console.log("Welcome Baack!");
         window.location.href="game.html";
     })
