@@ -320,8 +320,8 @@ const mapData = {
         );
         var camera_left = 16*20;
         var camera_top = 16*20;
-        //gameContainer.style.transform = `translate3d(${-newX*16+camera_left}px, ${-newY*16+camera_top}px, 0)`;
-        character.style.transform = `translate3d(${-newX*16+camera_left}px, ${-newY*16+camera_top}px, 0)`;
+        gameContainer.style.transform = `translate3d(${-newX*16+camera_left}px, ${-newY*16+camera_top}px, 0)`;
+        //character.style.transform = `translate3d(${-newX*16+camera_left}px, ${-newY*16+camera_top}px, 0)`;
         attemptGrabCoin(newX, newY);
       }
     }

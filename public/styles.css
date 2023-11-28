@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    background: linear-gradient(180deg, #d09970 -50%, #164628 69.71%, #01240d 150%);
+    background: linear-gradient(180deg, #01240d -50%, #01240d.71%, #01240d 150%);
     font-family: 'Source Sans Pro', sans-serif;
     display: flex;
     align-items: center;
@@ -23,14 +23,14 @@
     image-rendering: pixelated;
   }
 
-  /*.camera {
+  .camera {
     width: calc(4px*160);
     height: calc(4px*144);
     overflow: hidden;
     transition: transform 0.4s;
     background-color: #01240d;
-    position: relative;
-  }*/
+    position: absolute;
+  }
   
   .player-info {
     position: absolute;
@@ -71,9 +71,9 @@
   button {
     padding-left: 0.5em;
     padding-right: 0.5em;
-    background: #016223;
+    background: #d09970;
     border: 0;
-    border-bottom: 2px solid #0c3205;
+    border-bottom: 2px solid #251101;
     cursor: pointer;
   }
   button:active {
