@@ -88,7 +88,7 @@
     height: 16px;
   }
   .Character {
-    transition: transform 0.4s;
+    /*transition: transform 0.4s;*/
     transform: scale(1.5);
   }
   .Character.you {
