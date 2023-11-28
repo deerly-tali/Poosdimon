@@ -18,7 +18,7 @@
     width: 1032px;
     height: 788px;
     background: url(/images/map.png) no-repeat no-repeat;
-    background-size: 100%;
+    background-size: 150%;
     transform: scale(1);
     image-rendering: pixelated;
   }
@@ -27,8 +27,7 @@
     width: calc(4px*160);
     height: calc(4px*144);
     overflow: hidden;
-    transition: 0.4s;
-    transform: 0.4s;
+    transition: transform 0.4s;
     background-color: #01240d;
     position: relative;
   }
@@ -90,26 +89,30 @@
   }
   .Character {
     transition: transform 0.4s;
+    transform: scale(1.5);
   }
   .Character.you {
     z-index: 1;
   }
   .Character.you .Character_you-arrow {
     display: block;
+    transform: scale(2);
   }
   .Character_you-arrow {
     display: none;
     position: absolute;
-    top:-18px;
+    top:-27px;
     left: 5px;
     width: 7px;
     height: 5px;
+    transform: scale(2);
     background: url(/images/arrow.png) no-repeat no-repeat;
   }
   .Character_sprite {
     overflow: hidden;
     top: -3px;
     background: url(/images/characters.png);
+    transform: scale(1.7);
   }
   .Character[data-direction="right"] .Character_sprite {
     background-position-x: 16px;
@@ -131,11 +134,12 @@
   }
   .Character_shadow {
     background: url(/images/shadow.png) no-repeat no-repeat;
+    transform: scale(1.9);
   }
   
   .Character_name-container {
     position: absolute;
-    top: -12px;
+    top: -20px;
     left: -5px;
     font-size: 5px;
     padding: 1px 2px 1px;
@@ -145,15 +149,18 @@
     font-weight: bold;
     text-transform: uppercase;
     white-space: nowrap;
+    transform: scale(2);
   }
   .Character_coins {
     margin-left: 1px;
     color: gold;
+    transform: scale(2);
   }
   
   /* Coins */
   .Coin_sprite {
     background: url(/images/coin.png) no-repeat no-repeat;
+    transform: scale(2);
     animation: coinFloat 0.8s linear infinite alternate-reverse;
   }
   @keyframes coinFloat {
@@ -162,4 +169,5 @@
   }
   .Coin_shadow {
     background: url(/images/coin-shadow.png) no-repeat no-repeat;
+    transform: scale(2);
   }
