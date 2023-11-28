@@ -325,6 +325,8 @@ const mapData = {
         attemptGrabCoin(newX, newY);
       }
     }
+
+    window.handleArrowPress = handleArrowPress;
   
     function initGame() {
   
