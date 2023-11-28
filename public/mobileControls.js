@@ -1,13 +1,14 @@
 // Function to detect if the user is on a mobile device
 function isMobileDevice() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const platform = navigator.platform;
-    const maxTouchPoints = navigator.maxTouchPoints;
+    // Check for touch events
+    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) ||
-           /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(platform) ||
-           (maxTouchPoints && maxTouchPoints > 2);
+    // Check for mobile user agent
+    const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    return hasTouchScreen || isMobileUserAgent;
 }
+
 
 
 // If the user is on a mobile device, show the D-pad
