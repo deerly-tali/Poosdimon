@@ -18,19 +18,19 @@
     width: 1032px;
     height: 788px;
     background: url(/images/map.png) no-repeat no-repeat;
-    background-size: 150%;
+    background-size: 100%;
     transform: scale(1);
     image-rendering: pixelated;
   }
 
-  .camera {
+  /*.camera {
     width: calc(4px*160);
     height: calc(4px*144);
     overflow: hidden;
     transition: transform 0.4s;
     background-color: #01240d;
     position: relative;
-  }
+  }*/
   
   .player-info {
     position: absolute;
@@ -88,7 +88,7 @@
     height: 16px;
   }
   .Character {
-    /*transition: transform 0.4s;*/
+    transition: transform 0.4s;
     transform: scale(1.5);
   }
   .Character.you {
