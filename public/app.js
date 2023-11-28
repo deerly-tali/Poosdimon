@@ -66,6 +66,7 @@ const mapData = {
       "SOFT",
       "BUFF",
       "DOPE",
+      "HI",
     ]);
     const animal = randomFromArray([
       "BUDEW",
@@ -78,11 +79,15 @@ const mapData = {
       "SEEL",
       "HO-OH",
       "CELEBI",
-      "CHARMANDER",
+      "CHARIZARD",
       "CYNDAQUIL",
       "LUGIA",
       "GENGAR",
       "TOGEPI",
+      "SQUIRTLE",
+      "ZEKROM",
+      "DARKRAI",
+      "SHAYMIN"
     ]);
     return `${prefix} ${animal}`;
   }
