@@ -7,8 +7,8 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+// const {onRequest} = require("firebase-functions/v2/https");
+// const logger = require("firebase-functions/logger");
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -19,70 +19,67 @@ const logger = require("firebase-functions/logger");
 // });
 
 const functions = require("firebase-functions");
-const express = require("express"); //espress for backend
-const axios = require('axios');
+const express = require("express"); // espress for backend
+const axios = require("axios");
 
 const app = express();
-const admin = require('firebase-admin'); //we will use firebase auth
-const serviceAccount = require("./serviceKey.json"); //this is vital for firebase auth && PLS gitignore this
+const admin = require("firebase-admin"); // we will use firebase auth
+const serviceAccount = require("./serviceKey.json");
 
 
-app.use(express.json()); //we will be handling json objs
-app.use(express.urlencoded({extended: true})); //we will parse to our url
-//app.use(express.static('public'));
+app.use(express.json()); // we will be handling json objs
+app.use(express.urlencoded({extended: true})); // we will parse to our url
+// app.use(express.static('public'));
 
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount) //setting up for firebase admin auth
+  credential: admin.credential.cert(serviceAccount),
 });
 
 
-//to debug
-app.get('/hello', function(req,res){
-    res.send("hello worlds");
+app.get("/hello", (req, res) =>{
+  res.send("hello worlds");
 });
 
 
-//get a pokemon from poke api
-app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api but returns null & server fails
-    try{
-        const {name} = req.params;
-        const response = axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+// get a pokemon from poke api
+app.get("/pokemon/:name", async (req, res) =>{
+  try {
+    const {name} = req.params;
+    const response = axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then((pokemon) => {
-            console.log(pokemon.data);
-            const data = pokemon.data;
-            res.send(data);
+          console.log(pokemon.data);
+          const data = pokemon.data;
+          res.send(data);
         })
-        .catch(function (error){
-            console.log(error);
+        .catch((error) =>{
+          console.log(error);
         });
-
-    }catch(error){
-        res.status(404).send(error.message);
-    }
+    console.log(response);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
 });
 
-//signup a user
-app.post('/signup', async (req, res) => { //make POST request with new user info
+// signup a user
+app.post("/signup", async (req, res) => {
+  try {
+    const newUser = {
+      email: req.body.email,
+      password: req.body.password,
+    };
 
-    try{
-        const newUser = {
-            email: req.body.email,
-            password: req.body.password
-        }
-
-        const newUserResponse = await admin.auth().createUser({
-            email: newUser.email,
-            password: newUser.password,
-            emailVerified: true,
-            disabled: false
-        });
-        res.json(newUserResponse); //json obj response
-
-    }catch(error){
-        console.log(error.message);
-        res.status(409).send(error.message); //already existing account
-    }
+    const newUserResponse = await admin.auth().createUser({
+      email: newUser.email,
+      password: newUser.password,
+      emailVerified: true,
+      disabled: false,
+    });
+    res.json(newUserResponse);
+  } catch (error) {
+    console.log(error.message);
+    res.status(409).send(error.message); // already existing account
+  }
 });
 
 exports.app = functions.https.onRequest(app);

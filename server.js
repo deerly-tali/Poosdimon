@@ -18,14 +18,13 @@ admin.initializeApp({
 });
 
 
-//to debug
 app.get('/hello', function(req,res){
     res.send("hello worlds");
 });
 
 
 //get a pokemon from poke api
-app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api but returns null & server fails
+app.get('/pokemon/:name', async (req,res) =>{ 
     try{
         const {name} = req.params;
         const response = axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -37,6 +36,7 @@ app.get('/pokemon/:name', async (req,res) =>{ //TODO: the request grabs from api
         .catch(function (error){
             console.log(error);
         });
+        console.log(response);
 
     }catch(error){
         res.status(404).send(error.message);
@@ -69,7 +69,7 @@ app.post('/signup', async (req, res) => { //make POST request with new user info
 
 //login a user
 app.post('/login', async (req,res) =>{ //POST request
-    console.log(req.body); //to debug
+    console.log(req.body);
 
     try{
         const user = {
